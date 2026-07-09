@@ -75,7 +75,7 @@
                 Singh</span>
         </a>
         {% endif %}
-        <div class="hidden md:flex gap-8 items-center">
+        <div class="hidden min-[800px]:flex gap-8 items-center">
             <a class="font-mono-label text-[12px] uppercase tracking-widest {% if request.endpoint == 'index' %}text-primary glow-accent{% else %}text-on-surface-variant hover:text-primary transition-colors{% endif %}"
                 href="{{ url_for('index') }}">Home</a>
             <a class="font-mono-label text-[12px] uppercase tracking-widest {% if request.endpoint == 'about' %}text-primary glow-accent{% else %}text-on-surface-variant hover:text-primary transition-colors{% endif %}"
@@ -88,7 +88,36 @@
                 href="{{ url_for('contact') }}">Contact</a>
         </div>
 
+
+        <!-- Mobile Toggle Button -->
+        <button id="mobile-menu-btn" class="min-[800px]:hidden flex flex-col justify-center items-center w-10 h-10 z-50 relative focus:outline-none bg-white/5 rounded-full border border-white/10 hover:border-[#00f0ff] transition-colors">
+            <span class="w-5 h-[2px] bg-white rounded-full transition-all duration-300 ease-in-out origin-center mb-1.5 pointer-events-none"></span>
+            <span class="w-5 h-[2px] bg-white rounded-full transition-all duration-300 ease-in-out origin-center mb-1.5 pointer-events-none"></span>
+            <span class="w-5 h-[2px] bg-white rounded-full transition-all duration-300 ease-in-out origin-center pointer-events-none"></span>
+        </button>
     </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-surface/95 backdrop-blur-md z-40 flex flex-col justify-center items-center opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out">
+        <ul class="flex flex-col gap-8 text-center">
+            <li class="mobile-link translate-y-4 opacity-0 transition-all duration-500 ease-out">
+                <a class="font-mono-label text-2xl uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors" href="{{ url_for('index') }}">Home</a>
+            </li>
+            <li class="mobile-link translate-y-4 opacity-0 transition-all duration-500 ease-out">
+                <a class="font-mono-label text-2xl uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors" href="{{ url_for('about') }}">About</a>
+            </li>
+            <li class="mobile-link translate-y-4 opacity-0 transition-all duration-500 ease-out">
+                <a class="font-mono-label text-2xl uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors" href="{{ url_for('projects') }}">Projects</a>
+            </li>
+            <li class="mobile-link translate-y-4 opacity-0 transition-all duration-500 ease-out">
+                <a class="font-mono-label text-2xl uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors" href="{{ url_for('blog') }}">Blog</a>
+            </li>
+            <li class="mobile-link translate-y-4 opacity-0 transition-all duration-500 ease-out">
+                <a class="font-mono-label text-2xl uppercase tracking-widest text-primary glow-accent transition-colors" href="{{ url_for('contact') }}">Contact</a>
+            </li>
+        </ul>
+    </div>
+
 
     <!-- MAIN CONTENT -->
     <main class="flex-grow relative z-10 w-full h-full">
