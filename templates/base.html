@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>{% block title %}NEURAL_GALLERY{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Inter:wght@100..900&amp;family=Syne:wght@700;800&amp;family=Space+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                "surface-variant": "#273647",
+                "surface-tint": "#00dbe9",
+                "surface": "#051424",
+                "primary-container": "#00f0ff",
+                "on-surface": "#d4e4fa",
+                "on-surface-variant": "#b9cacb",
+                "background": "#051424",
+                "primary": "#dbfcff",
+              },
+              "fontFamily": {
+                "headline-lg": ["Geist"],
+                "mono-label": ["Geist"],
+                "headline-md": ["Geist"],
+                "display-xl": ["Geist"],
+                "body-lg": ["Inter"],
+                "body-md": ["Inter"],
+                "label-caps": ["Geist"]
+              }
+            }
+          }
+        }
+    </script>
+</head>
+<body class="selection:bg-primary-container selection:text-on-primary-container flex flex-col min-h-screen bg-background overflow-x-hidden">
+    
+    <!-- BACKGROUND LAYER (Three.js) — Home page only -->
+    {% if request.endpoint == 'index' %}
+    <div class="fixed inset-0 w-full h-full bg-transparent -z-10">
+        <div id="threejs-container" style="width:100%;height:100%"></div>
+    </div>
+    {% endif %}
+
+    <!-- TOP NAV BAR (Floating Pill Style) -->
+    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 bg-surface/60 backdrop-blur-3xl border border-white/10 shadow-[0_0_30px_-10px_rgba(0,219,233,0.4)] rounded-full px-8 py-3 w-11/12 max-w-4xl flex justify-between items-center">
+        <!-- Brand: show profile avatar on inner pages, text logo on home -->
+        {% if request.endpoint == 'index' %}
+        <a href="{{ url_for('index') }}" class="text-primary" style="font-family: 'Syne', sans-serif; font-weight: 800; font-size: 20px; letter-spacing: -0.02em; background: linear-gradient(135deg, #dbfcff 0%, #00f0ff 50%, #7df4ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Ravineesh Singh</a>
+        {% else %}
+        <a href="{{ url_for('index') }}" class="flex items-center gap-3 group">
+            <div class="w-9 h-9 rounded-full p-[2px] shrink-0" style="background: linear-gradient(135deg, #00f0ff, #ff8c00);">
+                <img src="/static/img/profile.png" alt="Ravineesh" class="w-full h-full rounded-full object-cover">
+            </div>
+            <span style="font-family: 'Syne', sans-serif; font-weight: 800; font-size: 16px; background: linear-gradient(135deg, #dbfcff 0%, #00f0ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Ravineesh Singh</span>
+        </a>
+        {% endif %}
+        <div class="hidden md:flex gap-8 items-center">
+            <a class="font-mono-label text-[12px] uppercase tracking-widest {% if request.endpoint == 'index' %}text-primary glow-accent{% else %}text-on-surface-variant hover:text-primary transition-colors{% endif %}" href="{{ url_for('index') }}">Home</a>
+            <a class="font-mono-label text-[12px] uppercase tracking-widest {% if request.endpoint == 'about' %}text-primary glow-accent{% else %}text-on-surface-variant hover:text-primary transition-colors{% endif %}" href="{{ url_for('about') }}">About</a>
+            <a class="font-mono-label text-[12px] uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors" href="#">Projects</a>
+            <a class="font-mono-label text-[12px] uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors" href="#">Contact</a>
+        </div>
+        <a href="#contact" class="font-mono-label text-[12px] bg-primary-container/10 border border-primary-container text-primary-container px-6 py-2 rounded-full hover:bg-primary-container hover:text-black transition-all duration-300">INITIATE</a>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow relative z-10 w-full h-full">
+        {% block content %}{% endblock %}
+    </main>
+
+    {% block footer %}
+    {% if request.endpoint != 'index' %}
+    <!-- FOOTER (Only shown on scrolling pages) -->
+    <footer class="w-full mt-auto py-12 bg-surface-container-lowest border-t border-white/5 relative z-10">
+        <div class="px-8 max-w-container-max mx-auto text-center">
+            <div class="text-on-surface-variant font-mono-label text-[12px] uppercase">© 2024 RAVINEESH SINGH. BUILT FOR THE VOID.</div>
+        </div>
+    </footer>
+    {% endif %}
+    {% endblock %}
+
+    {% if request.endpoint == 'index' %}
+    <script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
+    <script src="{{ url_for('static', filename='js/three-background.js') }}"></script>
+    {% endif %}
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

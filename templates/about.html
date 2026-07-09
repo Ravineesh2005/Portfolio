@@ -1,0 +1,222 @@
+{% extends "base.html" %}
+
+{% block title %}About | Ravineesh Singh{% endblock %}
+
+{% block content %}
+<div class="min-h-screen w-full px-6 md:px-16 max-w-6xl mx-auto" style="padding-top: 110px; padding-bottom: 80px;">
+
+    <!-- ── HERO ROW ─────────────────────────────────────────── -->
+    <div class="flex flex-col md:flex-row items-center md:items-start gap-10 mb-20">
+        <!-- Avatar -->
+        <div class="shrink-0 relative">
+            <div class="w-36 h-36 rounded-full p-[3px]" style="background: linear-gradient(135deg, #00f0ff, #ff8c00);">
+                <img class="w-full h-full object-cover rounded-full" src="/static/img/profile.png"
+                    alt="Ravineesh Singh">
+            </div>
+            <!-- Status dot -->
+            <span
+                class="absolute bottom-2 right-2 w-4 h-4 rounded-full bg-green-400 border-2 border-surface shadow-[0_0_8px_rgba(74,222,128,0.8)]"></span>
+        </div>
+
+        <!-- Name + headline -->
+        <div class="text-center md:text-left">
+            <p class="text-[11px] tracking-[0.25em] uppercase font-mono-label mb-2" style="color:#00f0ff;">
+                Computer Science · IIEST Shibpur · 3rd Year
+            </p>
+            <h1
+                style="font-family:'Syne',sans-serif; font-weight:800; font-size:clamp(32px,5vw,56px); line-height:1.1; background:linear-gradient(135deg,#dbfcff 0%,#00f0ff 50%,#7df4ff 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">
+                Ravineesh Singh
+            </h1>
+            <p class="mt-3 font-body-md text-on-surface-variant text-lg max-w-xl">
+                Full-Stack Developer &amp; Machine Learning Engineer building smart, beautiful, and performant web
+                applications.
+            </p>
+
+            <!-- Tag pills -->
+            <div class="flex flex-wrap gap-2 mt-5 justify-center md:justify-start">
+                {% set tags = ['Python', 'JavaScript', 'Machine Learning', 'Flask', 'React', 'Three.js'] %}
+                {% for tag in tags %}
+                <span class="text-[11px] font-mono-label uppercase tracking-widest px-3 py-1 rounded-full border"
+                    style="border-color:rgba(0,240,255,0.3); background:rgba(0,240,255,0.07); color:#00dbe9;">
+                    {{ tag }}
+                </span>
+                {% endfor %}
+            </div>
+
+            <!-- Action buttons -->
+            <div class="flex gap-4 mt-7 justify-center md:justify-start">
+                <a href="#contact"
+                    class="px-6 py-2.5 rounded-full font-mono-label text-[12px] uppercase tracking-widest transition-all duration-300"
+                    style="background:#00f0ff; color:#002022; font-weight:700; box-shadow:0 0 20px rgba(0,240,255,0.4);"
+                    onmouseover="this.style.boxShadow='0 0 30px rgba(0,240,255,0.7)'"
+                    onmouseout="this.style.boxShadow='0 0 20px rgba(0,240,255,0.4)'">
+                    Hire Me
+                </a>
+                <a href="#"
+                    class="px-6 py-2.5 rounded-full font-mono-label text-[12px] uppercase tracking-widest border transition-all duration-300 hover:border-primary/60 hover:text-primary"
+                    style="border-color:rgba(255,255,255,0.15); color:#b9cacb;">
+                    Download CV
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── TWO-COLUMN BODY ─────────────────────────────────── -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+        <!-- LEFT COLUMN ──────────────────────────────────── -->
+        <div class="lg:col-span-2 flex flex-col gap-8">
+
+            <!-- About card -->
+            <div class="glass-card rounded-2xl p-8">
+                <h2 class="font-mono-label uppercase tracking-[0.2em] text-[11px] mb-5" style="color:#00f0ff;">
+                    ⬡ &nbsp;About Me
+                </h2>
+                <p class="font-body-md text-on-surface-variant text-base leading-relaxed mb-4">
+                    I am a passionate Computer Science undergraduate at <span style="color:#00dbe9;"
+                        class="font-semibold">IIEST Shibpur</span>, currently in my 3rd year, with a deep interest in
+                    the intersection of <span style="color:#dbfcff;" class="font-semibold">full-stack development</span>
+                    and <span style="color:#dbfcff;" class="font-semibold">machine learning</span>.
+                </p>
+                <p class="font-body-md text-on-surface-variant text-base leading-relaxed">
+                    I love crafting experiences that are both technically robust and visually stunning — from
+                    high-performance web apps powered by Python backends to immersive 3D interfaces using Three.js. My
+                    goal is to turn complex problems into elegant, user-friendly solutions.
+                </p>
+            </div>
+
+            <!-- Skills card -->
+            <div class="glass-card rounded-2xl p-8">
+                <h2 class="font-mono-label uppercase tracking-[0.2em] text-[11px] mb-7" style="color:#00f0ff;">
+                    ⬡ &nbsp;Core Skills
+                </h2>
+                <div class="space-y-5">
+                    {% set skills = [
+                    ('Python', 92, '#00f0ff'),
+                    ('JavaScript / ES6+', 88, '#00f0ff'),
+                    ('Machine Learning', 78, '#ff8c00'),
+                    ('HTML & CSS', 95, '#00f0ff'),
+                    ('Flask / FastAPI', 80, '#ff8c00'),
+                    ('SQL & Databases', 72, '#c0c1ff')
+                    ] %}
+                    {% for skill, pct, color in skills %}
+                    <div>
+                        <div class="flex justify-between mb-1.5">
+                            <span class="font-mono-label text-[13px] text-on-surface">{{ skill }}</span>
+                            <span class="font-mono-label text-[12px]" style="color:{{ color }};">{{ pct }}%</span>
+                        </div>
+                        <div class="h-1.5 w-full rounded-full" style="background:rgba(255,255,255,0.07);">
+                            <div class="h-full rounded-full skill-progress"
+                                style="width:{{ pct }}%; background:{{ color }}; box-shadow:0 0 8px {{ color }}66;">
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Projects preview -->
+            <div class="glass-card rounded-2xl p-8">
+                <h2 class="font-mono-label uppercase tracking-[0.2em] text-[11px] mb-6" style="color:#00f0ff;">
+                    ⬡ &nbsp;Featured Projects
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {% set projects = [
+                    ('Neural Gallery', 'This portfolio — built with Flask, Three.js & Tailwind CSS.', '#00f0ff'),
+                    ('ML Classifier', 'A scikit-learn based model for multi-class image classification.', '#ff8c00'),
+                    ('Chat App', 'Real-time chat using WebSockets & Python backend.', '#c0c1ff'),
+                    ('Data Dashboard', 'Interactive data visualisation dashboard with D3.js.', '#00f0ff')
+                    ] %}
+                    {% for name, desc, color in projects %}
+                    <div class="p-5 rounded-xl border transition-all duration-300 group cursor-default"
+                        style="border-color:rgba(255,255,255,0.07); background:rgba(255,255,255,0.02);"
+                        onmouseover="this.style.borderColor='{{ color }}44'"
+                        onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'">
+                        <div class="w-2 h-2 rounded-full mb-3"
+                            style="background:{{ color }}; box-shadow:0 0 6px {{ color }};"></div>
+                        <h3 class="font-mono-label text-[14px] font-semibold mb-1" style="color:#dbfcff;">{{ name }}
+                        </h3>
+                        <p class="font-body-md text-on-surface-variant text-[13px] leading-relaxed">{{ desc }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT COLUMN ─────────────────────────────────── -->
+        <div class="flex flex-col gap-8">
+
+            <!-- Education card -->
+            <div class="glass-card rounded-2xl p-7">
+                <h2 class="font-mono-label uppercase tracking-[0.2em] text-[11px] mb-6" style="color:#00f0ff;">
+                    ⬡ &nbsp;Education
+                </h2>
+                <div class="relative pl-5 border-l" style="border-color:rgba(0,240,255,0.2);">
+                    <div class="absolute -left-1.5 top-1 w-3 h-3 rounded-full"
+                        style="background:#00f0ff; box-shadow:0 0 8px #00f0ff;"></div>
+                    <p class="font-mono-label text-[11px] uppercase tracking-widest mb-1" style="color:#00dbe9;">2024 –
+                        2028</p>
+                    <h3 class="font-semibold text-on-surface" style="font-family:'Geist',sans-serif;">B.Tech — Computer
+                        Science</h3>
+                    <p class="font-body-md text-on-surface-variant text-[13px] mt-1">IIEST Shibpur, West Bengal</p>
+                    <p class="font-body-md text-on-surface-variant text-[12px] mt-0.5 opacity-60">3rd Year · Currently
+                        Enrolled</p>
+                </div>
+            </div>
+
+            <!-- Tech stack card -->
+            <div class="glass-card rounded-2xl p-7">
+                <h2 class="font-mono-label uppercase tracking-[0.2em] text-[11px] mb-5" style="color:#00f0ff;">
+                    ⬡ &nbsp;Tech Stack
+                </h2>
+                <div class="flex flex-wrap gap-2">
+                    {% set stack = ['Python', 'Flask', 'JavaScript', 'HTML5', 'CSS3', 'TensorFlow', 'scikit-learn',
+                    'MYSQL', 'Git', 'Linux'] %}
+                    {% for tech in stack %}
+                    <span
+                        class="text-[11px] font-mono-label px-3 py-1.5 rounded-lg transition-all duration-200 cursor-default"
+                        style="background:rgba(0,240,255,0.06); border:1px solid rgba(0,240,255,0.15); color:#b9cacb;"
+                        onmouseover="this.style.background='rgba(0,240,255,0.15)'; this.style.color='#00f0ff';"
+                        onmouseout="this.style.background='rgba(0,240,255,0.06)'; this.style.color='#b9cacb';">
+                        {{ tech }}
+                    </span>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Contact card -->
+            <div class="glass-card rounded-2xl p-7" id="contact">
+                <h2 class="font-mono-label uppercase tracking-[0.2em] text-[11px] mb-5" style="color:#00f0ff;">
+                    ⬡ &nbsp;Get In Touch
+                </h2>
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3 text-on-surface-variant">
+                        <span class="material-symbols-outlined text-[18px]"
+                            style="color:#00f0ff;">alternate_email</span>
+                        <span class="font-mono-label text-[12px]">ravineesh@example.com</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-on-surface-variant">
+                        <span class="material-symbols-outlined text-[18px]" style="color:#00f0ff;">location_on</span>
+                        <span class="font-mono-label text-[12px]">West Bengal, India</span>
+                    </div>
+                </div>
+                <div class="flex gap-3 mt-6">
+                    <a href="#"
+                        class="w-10 h-10 glass-card rounded-full flex items-center justify-center transition-all duration-200 hover:bg-primary/10">
+                        <span class="material-symbols-outlined text-[18px]" style="color:#00f0ff;">code</span>
+                    </a>
+                    <a href="#"
+                        class="w-10 h-10 glass-card rounded-full flex items-center justify-center transition-all duration-200 hover:bg-primary/10">
+                        <span class="material-symbols-outlined text-[18px]" style="color:#00f0ff;">person_add</span>
+                    </a>
+                    <a href="#"
+                        class="w-10 h-10 glass-card rounded-full flex items-center justify-center transition-all duration-200 hover:bg-primary/10">
+                        <span class="material-symbols-outlined text-[18px]" style="color:#00f0ff;">share</span>
+                    </a>
+                </div>
+            </div>
+
+        </div><!-- end right col -->
+    </div><!-- end grid -->
+</div>
+{% endblock %}
