@@ -23,14 +23,15 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.innerHTML = 'UPLOADING DATA...';
       btn.style.opacity = '0.7';
       
-      // We can also make a real fetch request here to the Flask backend
+      // Using FormSubmit for real email delivery
       const formData = new FormData(form);
       const data = Object.fromEntries(formData.entries());
       
-      fetch('/contact', {
+      fetch('https://formsubmit.co/ajax/ravineeshsingh23@gmail.com', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json',
+              'Accept': 'application/json'
           },
           body: JSON.stringify(data)
       }).then(response => response.json())
