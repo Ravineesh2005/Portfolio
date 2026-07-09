@@ -161,69 +161,7 @@
         </div>
     </div>
 
-    <style>
-        @keyframes spin3d {
-            from {
-                transform: rotate(0deg);
-            }
-
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        @keyframes floatNode {
-
-            0%,
-            100% {
-                transform: translateY(0px);
-            }
-
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        /* Responsive Media Query for Tablets and Mobile (<= 850px) */
-        @media (max-width: 850px) {
-            #hero-container {
-                flex-direction: column !important;
-                height: auto !important;
-                min-height: 100vh !important;
-                padding-top: 100px !important;
-                overflow-y: visible !important;
-            }
-            #hero-left {
-                width: 100% !important;
-                padding: 0 32px !important;
-                align-items: center !important;
-                text-align: center !important;
-                margin-bottom: 20px !important;
-            }
-            #hero-left p {
-                text-align: center !important;
-            }
-            #hero-left > div {
-                justify-content: center !important;
-            }
-            #hero-right {
-                width: 100% !important;
-                height: 50vh !important;
-                min-height: 400px !important;
-                margin-top: auto !important;
-            }
-            #hero-right > .relative.z-10 {
-                height: 100% !important;
-            }
-            #hero-right img {
-                height: 100% !important;
-                max-height: 400px !important;
-            }
-            .scroll-hint {
-                display: none !important;
-            }
-        }
-    </style>
+    
 
     <!-- ── Scroll hint ─────────────────────────────────── -->
     <div class="scroll-hint absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
