@@ -10,8 +10,18 @@ def index():
 def about():
     return render_template('about.html')
 
-@app.route('/contact', methods=['POST'])
+@app.route('/projects')
+def projects():
+    return render_template('projects.html')
+
+@app.route('/blog')
+def blog():
+    return render_template('blog.html')
+
+@app.route('/contact', methods=['GET', 'POST'])
 def contact():
+    if request.method == 'GET':
+        return render_template('contact.html')
     # Placeholder for contact form processing
     data = request.json if request.is_json else request.form
     print(f"Received message: {data}")

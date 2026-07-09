@@ -64,10 +64,11 @@
         <div class="hidden md:flex gap-8 items-center">
             <a class="font-mono-label text-[12px] uppercase tracking-widest {% if request.endpoint == 'index' %}text-primary glow-accent{% else %}text-on-surface-variant hover:text-primary transition-colors{% endif %}" href="{{ url_for('index') }}">Home</a>
             <a class="font-mono-label text-[12px] uppercase tracking-widest {% if request.endpoint == 'about' %}text-primary glow-accent{% else %}text-on-surface-variant hover:text-primary transition-colors{% endif %}" href="{{ url_for('about') }}">About</a>
-            <a class="font-mono-label text-[12px] uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors" href="#">Projects</a>
-            <a class="font-mono-label text-[12px] uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors" href="#">Contact</a>
+            <a class="font-mono-label text-[12px] uppercase tracking-widest {% if request.endpoint == 'projects' %}text-primary glow-accent{% else %}text-on-surface-variant hover:text-primary transition-colors{% endif %}" href="{{ url_for('projects') }}">Projects</a>
+            <a class="font-mono-label text-[12px] uppercase tracking-widest {% if request.endpoint == 'blog' %}text-primary glow-accent{% else %}text-on-surface-variant hover:text-primary transition-colors{% endif %}" href="{{ url_for('blog') }}">Blog</a>
+            <a class="font-mono-label text-[12px] uppercase tracking-widest {% if request.endpoint == 'contact' %}text-primary glow-accent{% else %}text-on-surface-variant hover:text-primary transition-colors{% endif %}" href="{{ url_for('contact') }}">Contact</a>
         </div>
-        <a href="#contact" class="font-mono-label text-[12px] bg-primary-container/10 border border-primary-container text-primary-container px-6 py-2 rounded-full hover:bg-primary-container hover:text-black transition-all duration-300">INITIATE</a>
+        <a href="{{ url_for('contact') }}" class="font-mono-label text-[12px] bg-primary-container/10 border border-primary-container text-primary-container px-6 py-2 rounded-full hover:bg-primary-container hover:text-black transition-all duration-300">INITIATE</a>
     </nav>
 
     <!-- MAIN CONTENT -->

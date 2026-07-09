@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="w-full pt-32 pb-24 px-8 md:px-16 max-w-6xl mx-auto min-h-screen">
+    
+    <!-- Header -->
+    <div class="mb-16">
+        <div class="flex items-center gap-3 mb-4">
+            <span class="inline-block w-8 h-[2px]" style="background:#00f0ff;"></span>
+            <span class="font-mono-label text-[11px] uppercase tracking-[0.3em]" style="color:#00f0ff;">
+                My Work
+            </span>
+        </div>
+        <h1 class="leading-none mb-6"
+            style="font-family:'Syne',sans-serif; font-weight:800;
+                   font-size:clamp(40px,5vw,64px);
+                   background:linear-gradient(135deg,#ffffff 0%,#dbfcff 40%,#00f0ff 100%);
+                   -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+                   background-clip:text;">
+            Projects Archive
+        </h1>
+        <p class="font-body-md text-on-surface-variant text-base max-w-2xl leading-relaxed">
+            A collection of digital products, experiments, and applications I have built. Ranging from machine learning models and web apps to low-level system utilities.
+        </p>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {% set projects = [
+            ('Neural Gallery', 'This portfolio website built with Flask, Three.js, and Tailwind CSS. Features a custom 3D background, glassmorphism design, and dynamic layout.', '#Web', '#Flask', '#00f0ff'),
+            ('ML Image Classifier', 'A robust multi-class image classification pipeline using Scikit-learn and TensorFlow. Includes a custom dataset processing script and a clean web UI.', '#ML', '#Python', '#ff8c00'),
+            ('Real-Time Chat App', 'A fast, WebSocket-powered real-time chat application. Built with a Python backend and a vanilla JavaScript frontend for instant messaging.', '#WebSockets', '#Python', '#c0c1ff'),
+            ('Pathfinding Visualizer', 'Interactive visualization tool for algorithms like A*, Dijkstra, and BFS. Built with React to demonstrate how algorithms traverse a grid.', '#React', '#Algorithms', '#00ff88'),
+            ('Terminal File Manager', 'A fast, lightweight TUI (Terminal User Interface) file manager written in C++. Designed for speed and minimal resource usage on Linux.', '#C++', '#Systems', '#ff3366'),
+            ('Stock Predictor Bot', 'Automated script that scrapes financial news and uses sentiment analysis to predict short-term stock movements.', '#Python', '#Data', '#fffb00')
+        ] %}
+        
+        {% for name, desc, tag1, tag2, color in projects %}
+        <div class="glass-card rounded-2xl p-7 group transition-all duration-300 flex flex-col h-full cursor-default"
+             style="border:1px solid rgba(255,255,255,0.06); background: rgba(255,255,255,0.02);"
+             onmouseover="this.style.borderColor='{{ color }}66'; this.style.transform='translateY(-6px)'; this.style.background='rgba(255,255,255,0.04)';"
+             onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'; this.style.transform='translateY(0)'; this.style.background='rgba(255,255,255,0.02)';">
+            
+            <div class="flex justify-between items-start mb-6">
+                <div class="w-10 h-10 rounded-full flex items-center justify-center border" style="border-color:{{ color }}33; background:{{ color }}11;">
+                    <span class="material-symbols-outlined text-[20px]" style="color:{{ color }};">folder</span>
+                </div>
+                <a href="#" class="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span class="material-symbols-outlined text-[20px] text-on-surface-variant hover:text-white">open_in_new</span>
+                </a>
+            </div>
+            
+            <h3 class="font-mono-label font-bold text-xl mb-3" style="color:#dbfcff;">{{ name }}</h3>
+            
+            <p class="font-body-md text-on-surface-variant text-sm leading-relaxed mb-8 flex-grow">
+                {{ desc }}
+            </p>
+            
+            <div class="flex flex-wrap gap-2 mt-auto">
+                <span class="text-[10px] font-mono-label px-2 py-1 rounded" style="background:{{ color }}11; color:{{ color }}; border:1px solid {{ color }}33;">{{ tag1 }}</span>
+                <span class="text-[10px] font-mono-label px-2 py-1 rounded" style="background:{{ color }}11; color:{{ color }}; border:1px solid {{ color }}33;">{{ tag2 }}</span>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <div class="mt-20 text-center">
+        <a href="https://github.com" target="_blank" class="inline-flex items-center gap-2 font-mono-label text-[12px] uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors border-b border-white/10 hover:border-primary pb-1">
+            <span class="material-symbols-outlined text-[16px]">code</span>
+            View more on GitHub
+        </a>
+    </div>
+</div>
+{% endblock %}
