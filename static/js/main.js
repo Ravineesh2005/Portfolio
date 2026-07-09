@@ -23,11 +23,12 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.innerHTML = 'UPLOADING DATA...';
       btn.style.opacity = '0.7';
       
-      // Using FormSubmit for real email delivery
+      // Using Web3Forms for reliable email delivery
       const formData = new FormData(form);
       const data = Object.fromEntries(formData.entries());
+      data.access_key = "c1f26399-2da6-4242-9f8f-4ba8991b6664";
       
-      fetch('https://formsubmit.co/ajax/ravineeshsingh23@gmail.com', {
+      fetch('https://api.web3forms.com/submit', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json',
