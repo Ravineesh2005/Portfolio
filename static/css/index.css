@@ -1,61 +1,151 @@
 @keyframes spin3d {
-            from {
-                transform: rotate(0deg);
-            }
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
 
-            to {
-                transform: rotate(360deg);
-            }
-        }
+@keyframes floatNode {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-10px); }
+}
 
-        @keyframes floatNode {
+/* ── Entrance animations ───────────────────────────────────── */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
 
-            0%,
-            100% {
-                transform: translateY(0px);
-            }
+/* ── Scroll-hint bounce ────────────────────────────────────── */
+@keyframes scrollBounce {
+    0%, 100% { transform: translateY(0) translateX(-50%); }
+    50%       { transform: translateY(8px) translateX(-50%); }
+}
 
-            50% {
-                transform: translateY(-10px);
-            }
-        }
+/* ── Profile glow pulse ────────────────────────────────────── */
+@keyframes glowPulse {
+    0%, 100% {
+        filter: drop-shadow(0 0 25px rgba(0,230,255,0.4))
+                drop-shadow(0 0 70px rgba(0,180,255,0.18));
+    }
+    50% {
+        filter: drop-shadow(0 0 50px rgba(0,230,255,0.65))
+                drop-shadow(0 0 120px rgba(0,180,255,0.30));
+    }
+}
 
-        /* Responsive Media Query for Tablets and Mobile (<= 850px) */
-        @media (max-width: 850px) {
-            #hero-container {
-                flex-direction: column !important;
-                height: auto !important;
-                min-height: 100vh !important;
-                padding-top: 140px !important;
-                overflow-y: visible !important;
-            }
-            #hero-left {
-                width: 100% !important;
-                padding: 0 32px !important;
-                align-items: center !important;
-                text-align: center !important;
-                margin-bottom: 20px !important;
-            }
-            #hero-left p {
-                text-align: center !important;
-            }
-            #hero-left > div {
-                justify-content: center !important;
-            }
-            #hero-right {
-                width: 100% !important;
-                height: 50vh !important;
-                min-height: 400px !important;
-                margin-top: auto !important;
-            }
-            #hero-right > .relative.z-10 {
-                height: 100% !important;
-            }
-            #hero-right img {
-                height: 100% !important;
-                max-height: 400px !important;
-            }
-            .scroll-hint {
-                display: none !important;
-            }
-        }
+/* ── Node glow pulse ───────────────────────────────────────── */
+@keyframes dotPulse {
+    0%, 100% { box-shadow: 0 0 6px currentColor; opacity: 1; }
+    50%       { box-shadow: 0 0 14px currentColor; opacity: 0.7; }
+}
+
+/* ── Scroll reveal (projects) ──────────────────────────────── */
+@keyframes revealCard {
+    from { opacity: 0; transform: translateY(40px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ───────────────────────────────────────────────────────────── */
+/*  Apply entrance animations to hero elements                   */
+/* ───────────────────────────────────────────────────────────── */
+.hero-anim {
+    opacity: 0;
+    animation: fadeInUp 0.7s cubic-bezier(.22,.68,0,1.2) forwards;
+}
+
+/* stagger delays */
+.hero-anim:nth-child(1) { animation-delay: 0.1s; }
+.hero-anim:nth-child(2) { animation-delay: 0.25s; }
+.hero-anim:nth-child(3) { animation-delay: 0.4s; }
+.hero-anim:nth-child(4) { animation-delay: 0.55s; }
+.hero-anim:nth-child(5) { animation-delay: 0.7s; }
+.hero-anim:nth-child(6) { animation-delay: 0.85s; }
+
+/* profile image pulse */
+#hero-profile-img {
+    animation: glowPulse 4s ease-in-out infinite;
+}
+
+/* scroll hint bounce */
+.scroll-hint {
+    animation: scrollBounce 2s ease-in-out infinite;
+    left: 50%;
+}
+
+/* floating node dot */
+.node-dot {
+    animation: dotPulse 2.5s ease-in-out infinite;
+}
+
+/* smooth scroll whole page */
+html { scroll-behavior: smooth; }
+
+/* ───────────────────────────────────────────────────────────── */
+/*  Desktop: push hero content below fixed navbar               */
+/* ───────────────────────────────────────────────────────────── */
+#hero-container {
+    padding-top: 100px;
+}
+
+/* ───────────────────────────────────────────────────────────── */
+/*  Scroll-reveal cards (hidden by default, JS reveals them)    */
+/* ───────────────────────────────────────────────────────────── */
+.reveal-card {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.reveal-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ───────────────────────────────────────────────────────────── */
+/*  Responsive Media Query for Tablets and Mobile (<= 850px)   */
+/* ───────────────────────────────────────────────────────────── */
+@media (max-width: 850px) {
+    #hero-container {
+        flex-direction: column !important;
+        height: auto !important;
+        min-height: 100vh !important;
+        padding-top: 140px !important;
+        overflow-y: visible !important;
+    }
+    #hero-left {
+        width: 100% !important;
+        padding: 0 24px !important;
+        align-items: center !important;
+        text-align: center !important;
+        margin-bottom: 20px !important;
+    }
+    #hero-left p {
+        text-align: center !important;
+    }
+    #hero-left > div {
+        justify-content: center !important;
+    }
+    /* Hide floating data nodes on mobile — they clip off-screen */
+    .floating-node {
+        display: none !important;
+    }
+    /* Stack CTA buttons vertically on very small screens */
+    #hero-cta {
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    #hero-right {
+        width: 100% !important;
+        height: 50vh !important;
+        min-height: 400px !important;
+        margin-top: auto !important;
+    }
+    #hero-right > .relative.z-10 {
+        height: 100% !important;
+    }
+    #hero-right img {
+        height: 100% !important;
+        max-height: 400px !important;
+    }
+    .scroll-hint {
+        display: none !important;
+    }
+}
